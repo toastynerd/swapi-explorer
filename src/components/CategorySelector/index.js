@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './CategorySelector.css';
 
-function CategorySelector() {
+function CategorySelector(props) {
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [categories, setCategories] = useState({});
 
   useEffect(() => {
-    setIsLoading(true);
     fetch("https://swapi.dev/api/")
       .then(res => res.json())
       .then((result) => {
@@ -24,9 +23,19 @@ function CategorySelector() {
     return <div>...loading</div>
   } else {
     return (
-      <ul className="categories">
-        {Object.keys(categories).map(category => <li key={category}>{category}</li>)}
-      </ul>
+      <nav className="categories">
+        {
+          Object.keys(categories).map(category => (
+            <a 
+              onClick={() => props.setCategory(category)} 
+              key={category}
+              className={category === props.category ? 'selected' : ''}
+            >
+              {category}
+            </a>
+          ))
+        }
+      </nav>
     )
   }
 

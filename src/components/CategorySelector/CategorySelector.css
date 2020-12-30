@@ -1,0 +1,10 @@
+.categories>a {
+  margin: 1px;
+  padding: .5em;
+  border: 1px solid #000;
+  display: inline-block;
+}
+
+.categories>.selected {
+  background-color: red;
+}
