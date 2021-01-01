@@ -1,8 +1,14 @@
 .resource-card {
   padding: 1em;
-  border: 1px solid #ffe81f;
+  border: 2px solid #ffe81f;
   border-radius: 5px;
+  width: 6em;
+  margin: 5px;
+  font-weight: 500;
+  font-size: 1.2em;
 }
 
 .resource-card:hover {
+  color: #000;
+  background-color: #ffe81f;
 }

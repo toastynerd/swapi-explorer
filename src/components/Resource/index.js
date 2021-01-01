@@ -12,11 +12,12 @@ function Resource(props) {
   useEffect(() => {
     setIsLoading(true);
     setResource([]);
+    setCurrentPage(1);
     fetch(`https://swapi.dev/api/${props.category}/`) 
       .then(res => res.json())
       .then((result) => {
-        console.log(result.results);
         setIsLoading(false);
+        console.log(result);
         setResource(result.results);
         setMore(!!result.next);
       })
@@ -30,23 +31,28 @@ function Resource(props) {
       .then((result) => {
         setIsLoading(false);
         setResource([...resource, ...result.results]);
+        setMore(!!result.next);
       })
       .catch(error => setError(error));
   }, [currentPage]);
 
   if (error) {
-    return <div className="error">{error.message}</div>
+    return (
+      <div onClick={() => setError(null)} className="resource-container">
+        <p className="error">{error.message} click to dismiss</p>
+      </div>
+    )
   } else if (isLoading && !resource.length) {
     return <div>...Loading</div>
   } else {
     return (
-      <div>
+      <div className="resource-container">
         <ul className="resource">
         {
           resource.map((item, index) => <ResourceCard resource={item} key={index}/>)
         }
         </ul>
-        {more == true && <button onClick={() => setCurrentPage(currentPage + 1)}>Load More</button>}
+        {more == true && <button className="more-button" onClick={() => setCurrentPage(currentPage + 1)}>Load More</button>}
       </div>
     )
   }
