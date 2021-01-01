@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import ResourceCard from './ResourceCard';
 import './Resource.css';
 
 function Resource(props) {
@@ -14,6 +15,7 @@ function Resource(props) {
     fetch(`https://swapi.dev/api/${props.category}/`) 
       .then(res => res.json())
       .then((result) => {
+        console.log(result.results);
         setIsLoading(false);
         setResource(result.results);
         setMore(!!result.next);
@@ -41,7 +43,7 @@ function Resource(props) {
       <div>
         <ul className="resource">
         {
-          resource.map((item, index) => <li key={index}>{item.name ? item.name : item.title}</li>)
+          resource.map((item, index) => <ResourceCard resource={item} key={index}/>)
         }
         </ul>
         {more == true && <button onClick={() => setCurrentPage(currentPage + 1)}>Load More</button>}

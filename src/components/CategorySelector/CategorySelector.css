@@ -1,7 +1,13 @@
+.categories {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+}
 .categories>a {
   margin: 1px;
   padding: .5em;
-  border: 1px solid #000;
+  border: 1px solid #ffe81f;
+  border-radius: 5px;
   display: inline-block;
 }
 
