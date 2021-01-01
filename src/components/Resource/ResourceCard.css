@@ -8,6 +8,10 @@
   font-size: 1.2em;
 }
 
+.expanded {
+  width: 20em;
+}
+
 .resource-card:hover {
   color: #000;
   background-color: #ffe81f;
