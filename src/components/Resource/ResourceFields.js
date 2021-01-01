@@ -5,7 +5,7 @@ function ResourceFields({ resource }) {
   return (
     <ul className="resource-fields">
       
-      { Object.keys(resource).map((key) => Array.isArray(resource[key]) ? '' : key === 'url' ? '' : <li>{key}: {resource[key]}</li>) }
+      { Object.keys(resource).map((key) => Array.isArray(resource[key]) ? '' : key === 'url' ? '' : key === 'name' ? '' : <li>{key}: {resource[key]}</li>) }
     </ul>
 
   );
